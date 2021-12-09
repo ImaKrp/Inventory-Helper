@@ -1,21 +1,29 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { StatusBar } from "react-native";
+import { useFonts } from "expo-font";
+import {
+  Lato_400Regular,
+  Lato_300Light,
+  Lato_700Bold,
+} from "@expo-google-fonts/lato";
+import AppLoading from "expo-app-loading";
 
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    Lato_400Regular,
+    Lato_300Light,
+    Lato_700Bold,
+  });
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <>
+      <StatusBar
+        translucent
+        barStyle="light-content"
+        backgroundColor="#16191D"
+      />
+    </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
