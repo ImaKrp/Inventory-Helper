@@ -46,7 +46,7 @@ export const Scroll = styled.ScrollView`
 export const Container = styled.View`
   flex: 1;
   align-items: center;
-  padding: 20px 0;
+  padding: 20px 0 0 0;
 `;
 
 export const Footer = styled.View`

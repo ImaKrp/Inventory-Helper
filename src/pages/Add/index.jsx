@@ -41,10 +41,7 @@ export const Add = () => {
       value,
       quantity,
     })
-      .then((id) => {
-        console.log("created with id: " + id);
-        navigation.navigate("List");
-      })
+      .then(() => navigation.navigate("List"))
       .catch((err) => console.log(err));
   };
 

@@ -30,15 +30,6 @@ export const List = () => {
   const [products, setProducts] = useState([]);
   const navigation = useNavigation();
 
-  //? ProductsTransactions.createProduct({
-  //?   name: "Julio",
-  //?   category: "Categoria",
-  //?   value: 0,
-  //?   quantity: 2,
-  //? })
-  //?   .then((id) => console.log("created with id: " + id))
-  //?   .catch((err) => console.log(err));
-
   const fetchProducts = () => {
     ProductsTransactions.listAllProducts().then((products) =>
       setProducts(products)
