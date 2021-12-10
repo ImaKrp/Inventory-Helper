@@ -21,7 +21,7 @@ export const Scroll = styled.ScrollView`
 export const Container = styled.View`
   flex: 1;
   align-items: center;
-  padding: 20px 0;
+  padding: 12px 0 20px 0;
 `;
 
 export const Footer = styled.View`
@@ -57,4 +57,74 @@ export const ReturnButton = styled.TouchableOpacity`
 export const ReturnImage = styled.Image`
   width: 14px;
   height: 14px;
+`;
+
+export const PreviewTitle = styled.Text`
+  color: #1f1f25;
+  font-family: Lato_400Regular;
+  font-size: 18px;
+  width: 92%;
+  margin-bottom: 12px;
+`;
+
+export const Label = styled.Text`
+  color: #1f1f25cc;
+  font-family: Lato_400Regular;
+  font-size: 18px;
+  width: 92%;
+  margin: ${({ margin }) => margin ?? "0 0 3px 0"};
+`;
+
+export const Input = styled.TextInput`
+  color: #1f1f25;
+  font-family: Lato_400Regular;
+  font-size: 18px;
+  height: 34px;
+  align-items: center;
+  width: 100%;
+  padding: 0 2px;
+`;
+
+export const InputView = styled.View`
+  width: 92%;
+  padding: 0 6px;
+  margin-bottom: 12px;
+  border-bottom-color: #1f1f2533;
+  border-bottom-width: 2px;
+  flex-direction: row;
+  align-items: center;
+`;
+
+export const MoneyInfo = styled.Text`
+  color: #1f1f25cc;
+  font-family: Lato_400Regular;
+  font-size: 18px;
+  margin-right: 4px;
+`;
+
+export const Select = styled.Picker`
+  color: #1f1f25;
+  font-family: Lato_400Regular;
+  font-size: 18px;
+  height: 34px;
+  align-items: center;
+  width: 100%;
+`;
+
+export const SubmitButton = styled.TouchableOpacity`
+  background-color: #24292e;
+  border-radius: 6px;
+  margin-top: 30px;
+  shadow-color: #00000099;
+  elevation: 4;
+  width: 175px;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const SubmitText = styled.Text`
+  color: #FAFBFC;
+  font-family: Lato_400Regular;
+  font-size: 18px;
 `;

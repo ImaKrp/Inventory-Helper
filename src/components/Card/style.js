@@ -55,7 +55,6 @@ export const Label = styled.Text`
   color: #1f1f2599;
   font-family: Lato_400Regular;
   font-size: 14px;
-  margin-bottom: 2px;
   margin: ${({ margin }) => margin ?? 0};
 `;
 
@@ -86,7 +85,17 @@ export const Controller = styled.TouchableOpacity`
 `;
 
 export const ControllerText = styled.Text`
-  color: ${({ color }) => color ?? '#000'};
+  color: ${({ color }) => color ?? "#000"};
   font-family: Lato_400Regular;
   font-size: 26px;
+`;
+
+export const BlockEdit = styled.View`
+  width: 155%;
+  height: 150%;
+  position: absolute;
+  right: -20px;
+  bottom: -20px;
+  z-index: 3;
+  elevation: 5;
 `;

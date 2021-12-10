@@ -11,6 +11,7 @@ import {
   QuantityControllers,
   Controller,
   ControllerText,
+  BlockEdit,
 } from "./style";
 
 export const Card = ({
@@ -22,15 +23,17 @@ export const Card = ({
   deleteProduct,
   increaseQuantity,
   decreaseQuantity,
+  editable,
 }) => {
   return (
     <>
       <Container>
+        {editable === false && <BlockEdit />}
         <DeleteButton activeOpacity={0.7} onPress={() => deleteProduct(id)}>
           <DeleteText>Deletar</DeleteText>
         </DeleteButton>
         <InfoColumn>
-          <Name>{name}</Name>
+          <Name numberOfLines={1}>{name}</Name>
           <Label>Categoria</Label>
           <PropsValues>{category}</PropsValues>
           <Label margin="5px 0 0 0">Valor</Label>

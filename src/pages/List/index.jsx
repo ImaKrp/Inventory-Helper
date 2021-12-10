@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   Header,
   Title,
@@ -19,6 +19,7 @@ import { useNavigation } from "@react-navigation/native";
 import { Card } from "../../components/Card";
 
 import ProductsTransactions from "../../database/Products";
+import { formatMoneyValue } from "../../utils/formatValues";
 
 import searchIcon from "../../../assets/icons/Search.png";
 import selectedList from "../../../assets/icons/SelectedList.png";
@@ -28,10 +29,6 @@ export const List = () => {
   const [search, setSearch] = useState("");
   const [products, setProducts] = useState([]);
   const navigation = useNavigation();
-
-  useEffect(() => {
-    fetchProducts();
-  }, []);
 
   //? ProductsTransactions.createProduct({
   //?   name: "Julio",
@@ -64,6 +61,8 @@ export const List = () => {
       .then(() => fetchProducts())
       .catch((err) => console.log(err));
   };
+
+  fetchProducts();
 
   return (
     <>
@@ -105,7 +104,7 @@ export const List = () => {
                     id={product.id}
                     name={product.name}
                     category={product.category}
-                    value={product.value}
+                    value={formatMoneyValue(Number(product.value))}
                     quantity={product.quantity}
                     deleteProduct={deleteProduct}
                     increaseQuantity={increaseQuantity}
