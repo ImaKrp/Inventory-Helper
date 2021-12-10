@@ -8,6 +8,8 @@ import {
 } from "@expo-google-fonts/lato";
 import AppLoading from "expo-app-loading";
 
+import { List } from "./src/pages/List";
+
 export default function App() {
   const [fontsLoaded] = useFonts({
     Lato_400Regular,
@@ -24,6 +26,7 @@ export default function App() {
         barStyle="light-content"
         backgroundColor="#16191D"
       />
+      <List />
     </>
   );
 }
