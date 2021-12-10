@@ -28,30 +28,25 @@ export const SearchContainer = styled.View`
   border-radius: 6px;
   padding: 0 6px;
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const SearchImage = styled.Image`
   width: 21px;
   height: 21px;
-`;
-
-export const SearchButton = styled.TouchableOpacity`
-  width: 50px;
-  margin: 0 4px 0 0;
-  height: 50px;
-  align-items: center;
-  justify-content: center;
+  margin: 0 13px 0 10px;
 `;
 
 export const Scroll = styled.ScrollView`
   flex: 1;
   background-color: #f1f1f2;
-  padding: 20px 0;
 `;
 
 export const Container = styled.View`
   flex: 1;
   align-items: center;
+  padding: 20px 0;
 `;
 
 export const Footer = styled.View`
@@ -67,7 +62,7 @@ export const NavButton = styled.TouchableOpacity`
   height: 50px;
   align-items: center;
   justify-content: center;
-  background-color: #f1f1f20D;
+  background-color: #f1f1f20d;
   border-radius: 6px;
 `;
 

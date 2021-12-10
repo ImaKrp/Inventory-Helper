@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Header,
   Title,
   SearchContainer,
-  SearchButton,
   SearchImage,
   Search,
   Scroll,
@@ -15,20 +14,55 @@ import {
   RegisterImage,
   RegisterText,
 } from "./style";
+import { useNavigation } from "@react-navigation/native";
 
 import { Card } from "../../components/Card";
+
+import ProductsTransactions from "../../database/Products";
 
 import searchIcon from "../../../assets/icons/Search.png";
 import selectedList from "../../../assets/icons/SelectedList.png";
 import addImage from "../../../assets/icons/Add.png";
 
 export const List = () => {
-  const [searchInput, setSearchInput] = useState("");
-  const [searchValue, setSearchValue] = useState("");
+  const [search, setSearch] = useState("");
+  const [products, setProducts] = useState([]);
+  const navigation = useNavigation();
 
-  const submitSearch = () => {
-    console.log(searchInput);
-    setSearchValue(searchInput);
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  //? ProductsTransactions.createProduct({
+  //?   name: "Julio",
+  //?   category: "Categoria",
+  //?   value: 0,
+  //?   quantity: 2,
+  //? })
+  //?   .then((id) => console.log("created with id: " + id))
+  //?   .catch((err) => console.log(err));
+
+  const fetchProducts = () => {
+    ProductsTransactions.listAllProducts().then((products) =>
+      setProducts(products)
+    );
+  };
+
+  const deleteProduct = (id) => {
+    ProductsTransactions.deleteProduct(id).then(() => fetchProducts());
+  };
+
+  const increaseQuantity = (id, quantity) => {
+    ProductsTransactions.updateProduct(id, Number(quantity) + 1)
+      .then(() => fetchProducts())
+      .catch((err) => console.log(err));
+  };
+
+  const decreaseQuantity = (id, quantity) => {
+    if (Number(quantity) === 0) return;
+    ProductsTransactions.updateProduct(id, Number(quantity) - 1)
+      .then(() => fetchProducts())
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -36,15 +70,12 @@ export const List = () => {
       <Header>
         <Title>Controle de Estoque</Title>
         <SearchContainer>
-          <SearchButton activeOpacity={0.7} onPress={submitSearch}>
-            <SearchImage source={searchIcon} />
-          </SearchButton>
+          <SearchImage source={searchIcon} />
           <Search
             placeholder="Procurar produto"
             placeholderTextColor="#F1F1F2a6"
-            value={searchInput}
-            onChangeText={setSearchInput}
-            onSubmitEditing={submitSearch}
+            value={search}
+            onChangeText={setSearch}
           />
         </SearchContainer>
       </Header>
@@ -55,16 +86,33 @@ export const List = () => {
             style={{
               borderStyle: "dashed",
             }}
+            onPress={() => navigation.navigate("Add")}
           >
             <RegisterImage source={addImage} />
             <RegisterText>Adicionar Produto</RegisterText>
           </RegisterButton>
-          <Card
-            name="Produto"
-            category="Produto"
-            value="00,00"
-            quantity="20"
-          />
+
+          {products.length > 0 &&
+            products
+              .filter(
+                ({ name }) =>
+                  name.toLowerCase()?.indexOf(search.toLowerCase()) > -1
+              )
+              .map((product, id) => {
+                return (
+                  <Card
+                    key={id}
+                    id={product.id}
+                    name={product.name}
+                    category={product.category}
+                    value={product.value}
+                    quantity={product.quantity}
+                    deleteProduct={deleteProduct}
+                    increaseQuantity={increaseQuantity}
+                    decreaseQuantity={decreaseQuantity}
+                  />
+                );
+              })}
         </Container>
       </Scroll>
       <Footer>

@@ -8,7 +8,7 @@ import {
 } from "@expo-google-fonts/lato";
 import AppLoading from "expo-app-loading";
 
-import { List } from "./src/pages/List";
+import { Routes } from "./src/routes";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -26,7 +26,7 @@ export default function App() {
         barStyle="light-content"
         backgroundColor="#16191D"
       />
-      <List />
+      <Routes />
     </>
   );
 }
